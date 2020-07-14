@@ -3,9 +3,13 @@
 PLugin Name: Github Custom Plugin Update
 Plugin URI: http://www.webmyne.com/
 Description: Github Custom Plugin Update
-version: 2.0
+version: 1.0
 author: Webmyne
 Author URI: http://www.webmyne.com/
+WC requires at least: 3.9.3
+WC tested up to: 4.0
+Requires at least: 3.8.1
+Tested up to: 5.3.2
 */
 
 /* Start code at Update Plugin */
@@ -31,7 +35,7 @@ function github_plugin_updater_test_init() {
 			'requires' => '3.8.1',
 			'tested' => '5.3.2',
 			'readme' => 'README.md',
-			'access_token' => 'c93e35f3c225c26ab85532d3746442944e78126b',
+			'access_token' => 'd96bab0998c7af9054102a8b70f59ffb49c0091b',
 		);
 
 		//echo "<pre>";print_r($config);exit;
@@ -71,7 +75,7 @@ function customdata_new()
 			$dbpwd = get_option('oscimp_dbpwd');
 			$prod_img_folder = get_option('oscimp_prod_img_folder');
 			$store_url = get_option('oscimp_store_url');
-			$updateverson="2.0";
+			$updateverson="6.0";
 		?>
 		 
 		<form name="oscimp_form" method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
