@@ -68,13 +68,15 @@ class WP_GitHub_Updater {
 	public function __construct( $config = array() ) {
 
 		$defaults = array(
-			'slug' => plugin_basename( __FILE__ ),
+			'slug' => 'git-plugin-update-now/index.php',
 			'proper_folder_name' => dirname( plugin_basename( __FILE__ ) ),
 			'sslverify' => false,
-			'access_token' => 'c93e35f3c225c26ab85532d3746442944e78126b',
+			'access_token' => 'd96bab0998c7af9054102a8b70f59ffb49c0091b',
 		);
 
 		$this->config = wp_parse_args( $config, $defaults );
+		
+		//echo "<pre>";print_r($defaults);exit;
 
 		// if the minimum config isn't set, issue a warning and bail
 		if ( ! $this->has_minimum_config() ) {
@@ -84,12 +86,13 @@ class WP_GitHub_Updater {
 			return;
 		}
 
-		$this->set_defaults();
+		//echo "<pre>";print_r($this->set_defaults());exit;
 
 		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'api_check' ) );
 
 		// Hook into the plugin details screen
 		add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 10, 3 );
+		
 		add_filter( 'upgrader_post_install', array( $this, 'upgrader_post_install' ), 10, 3 );
 
 		// set timeout
@@ -139,19 +142,19 @@ class WP_GitHub_Updater {
 	 * @return void
 	 */
 	public function set_defaults() {
-		/* if ( !empty( $this->config['access_token'] ) ) {
+		if ( !empty( $this->config['access_token'] ) ) {
 
 			// See Downloading a zipball (private repo) https://help.github.com/articles/downloading-files-from-the-command-line
 			extract( parse_url( $this->config['zip_url'] ) ); // $scheme, $host, $path
 			
-			$zip_url = $scheme . '://api.github.com/repos' . $path;
-			$zip_url = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $zip_url );
-			//$zip_url = 'https://api.github.com/repos/ajaywebmyne/custompluginupdate/zipball/master';
+			//$zip_url = $scheme . '://api.github.com/repos' . $path;
+			//$zip_url = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $zip_url );
+			$zip_url = 'http://github.com/ajaywebmyne/git-plugin-update-now/archive/master.zip';
 			//http://github.com/ajaywebmyne/custompluginupdate/archive/master.zip
 			//$zip_url = add_query_arg( array( 'access_token' => $this->config['access_token'] ), $zip_url );
 			$this->config['zip_url'] = $zip_url;
-			echo $zip_url;exit;
-		} */
+			//echo $zip_url;exit;
+		}
 
 
 		if ( ! isset( $this->config['new_version'] ) )
@@ -275,6 +278,8 @@ class WP_GitHub_Updater {
 		$raw_response = wp_remote_get( $query, array(
 			'sslverify' => $this->config['sslverify']
 		) );
+		
+		//echo "<pre>";print_r($raw_response);exit;
 
 		return $raw_response;
 	}
@@ -307,7 +312,7 @@ class WP_GitHub_Updater {
 			// Store the data in this class instance for future calls
 			$this->github_data = $github_data;
 		}
-//echo "<pre>";print_r($github_data);
+//echo "<pre>";print_r($github_data);exit;
 		return $github_data;
 	}
 
@@ -345,6 +350,7 @@ class WP_GitHub_Updater {
 	public function get_plugin_data() {
 		include_once ABSPATH.'/wp-admin/includes/plugin.php';
 		$data = get_plugin_data( WP_PLUGIN_DIR.'/'.$this->config['slug'] );
+		//echo "<pre>";print_r($data);exit;
 		return $data;
 	}
 
@@ -357,15 +363,20 @@ class WP_GitHub_Updater {
 	 * @return object $transient updated plugin data transient
 	 */
 	public function api_check( $transient ) {
-
+echo "di";exit;
 		// Check if the transient contains the 'checked' information
 		// If not, just return its value without hacking it
+		
 		if ( empty( $transient->checked ) )
 			return $transient;
 
 		// check the version and decide if it's new
-		$update = version_compare( $this->config['new_version'], $this->config['version'] );
+		echo "update ".$update = version_compare( $this->config['new_version'], $this->config['version'] );
+		
+echo "new version  ".$this->config['new_version'];
 
+echo "Config version ".$this->config['version'];
+exit;
 		if ( 1 === $update ) {
 			$response = new stdClass;
 			$response->new_version = $this->config['new_version'];
