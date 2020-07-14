@@ -3,7 +3,7 @@
 PLugin Name: Github Custom Plugin Update
 Plugin URI: http://www.webmyne.com/
 Description: Github Custom Plugin Update
-version: 1.0
+version: 2.0
 author: Webmyne
 Author URI: http://www.webmyne.com/
 WC requires at least: 3.9.3
