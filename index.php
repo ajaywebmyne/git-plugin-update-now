@@ -6,8 +6,6 @@ Description: Github Custom Plugin Update
 version: 2.0
 author: Webmyne
 Author URI: http://www.webmyne.com/
-WC requires at least: 3.9.3
-WC tested up to: 4.0
 Requires at least: 3.8.1
 Tested up to: 5.3.2
 */
