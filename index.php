@@ -33,7 +33,7 @@ function github_plugin_updater_test_init() {
 			'requires' => '3.8.1',
 			'tested' => '5.3.2',
 			'readme' => 'README.md',
-			'access_token' => 'c403419aefdab851eaa5f4fda937548f615e36aa',
+			'access_token' => 'd8ffa7b13b58fdcf4e999b9e6ee9aef31bec8d50',
 		);
 
 		//echo "<pre>";print_r($config);exit;
