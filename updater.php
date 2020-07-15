@@ -71,7 +71,7 @@ class WP_GitHub_Updater {
 			'slug' => 'git-plugin-update-now/index.php',
 			'proper_folder_name' => dirname( plugin_basename( __FILE__ ) ),
 			'sslverify' => false,
-			'access_token' => 'd8ffa7b13b58fdcf4e999b9e6ee9aef31bec8d50',
+			'access_token' => '',
 		);
 
 		$this->config = wp_parse_args( $config, $defaults );
